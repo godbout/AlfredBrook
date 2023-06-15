@@ -6,6 +6,31 @@
 	<string>mo.com.sleeplessmind.brook</string>
 	<key>connections</key>
 	<dict>
+		<key>141AE334-7E08-4DBE-B44E-ACE3FFA06193</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>475F40BA-CAAF-4AB6-960E-EFF8379E13FB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>49993474-8EDE-4840-A144-A00A02A7F2F6</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>661B2258-0E04-428F-8393-E8EBF6A096C5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>661B2258-0E04-428F-8393-E8EBF6A096C5</key>
 		<array>
 			<dict>
@@ -23,7 +48,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>661B2258-0E04-428F-8393-E8EBF6A096C5</string>
+				<string>141AE334-7E08-4DBE-B44E-ACE3FFA06193</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -43,6 +68,103 @@
 	<string>Brook Control</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://apps.apple.com/us/app/brook-network-tool/id1216002642</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>475F40BA-CAAF-4AB6-960E-EFF8379E13FB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>dick LOL</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>49993474-8EDE-4840-A144-A00A02A7F2F6</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>141AE334-7E08-4DBE-B44E-ACE3FFA06193</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>bash togglevpn.sh {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>661B2258-0E04-428F-8393-E8EBF6A096C5</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Brook VPN</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1EE8D950-821D-49FA-9FD5-7B94DD45056F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -92,61 +214,31 @@
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Brook VPN</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>1EE8D950-821D-49FA-9FD5-7B94DD45056F</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>script</key>
-				<string>bash togglevpn.sh {query}</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>661B2258-0E04-428F-8393-E8EBF6A096C5</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Wireguard Control enables the user to toggle predefined Wire Guard VPN tunnels, using the keyword wguard.</string>
 	<key>uidata</key>
 	<dict>
+		<key>141AE334-7E08-4DBE-B44E-ACE3FFA06193</key>
+		<dict>
+			<key>xpos</key>
+			<real>290</real>
+			<key>ypos</key>
+			<real>125</real>
+		</dict>
 		<key>1EE8D950-821D-49FA-9FD5-7B94DD45056F</key>
 		<dict>
 			<key>xpos</key>
 			<real>620</real>
 			<key>ypos</key>
 			<real>180</real>
+		</dict>
+		<key>475F40BA-CAAF-4AB6-960E-EFF8379E13FB</key>
+		<dict>
+			<key>xpos</key>
+			<real>410</real>
+			<key>ypos</key>
+			<real>15</real>
 		</dict>
 		<key>661B2258-0E04-428F-8393-E8EBF6A096C5</key>
 		<dict>
@@ -158,7 +250,7 @@
 		<key>A223DE44-0855-4BF8-8A0E-021475E7FFF9</key>
 		<dict>
 			<key>xpos</key>
-			<real>190</real>
+			<real>110</real>
 			<key>ypos</key>
 			<real>180</real>
 		</dict>
