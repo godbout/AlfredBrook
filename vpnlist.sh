@@ -13,18 +13,23 @@ vpn_list() {
   IFS=$'\n'
   declare -a vpns=( `get_vpn_names` )
 
-  # output JSON
   jsonstr="{\"items\":["
-  for vpn in "${vpns[@]}";do
-    conn=$(get_vpn_status $vpn )
-    jsonstr+="{\"title\":\"$vpn\",\"subtitle\":\"$conn\",\"arg\":\"$vpn\",";
-    if [[ "$conn" == "Connected" ]]; then
-      jsonstr+="\"icon\":{\"path\":\"./images/on.png\"}"
-    else
-      jsonstr+="\"icon\":{\"path\":\"./images/off.png\"}"
-    fi
-    jsonstr+="},"
-  done
+
+  if [[ -z "$vpns" ]]; then
+      jsonstr+="{\"title\":\"No Brook VPN found ☹️\",\"subtitle\":\"You need to install Brook and set up your VPN first. Press return now!\",\"arg\":\"dick LOL\",}";
+  else
+    for vpn in "${vpns[@]}";do
+      conn=$(get_vpn_status $vpn)
+      jsonstr+="{\"arg\":\"$vpn\",";
+      if [[ "$conn" == "Connected" ]]; then
+        jsonstr+="\"title\":\"Disconnect\",\"subtitle\":\"$vpn\",\"icon\":{\"path\":\"./resources/icons/disconnect.png\"}"
+      else
+        jsonstr+="\"title\":\"Connect\",\"subtitle\":\"$vpn\",\"icon\":{\"path\":\"./resources/icons/connect.png\"}"
+      fi
+      jsonstr+="},"
+    done
+  fi
+
   jsonstr="${jsonstr%,}"
   jsonstr+="]}"
   echo -e $jsonstr
