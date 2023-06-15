@@ -16,7 +16,7 @@ vpn_list() {
   jsonstr="{\"items\":["
 
   if [[ -z "$vpns" ]]; then
-      jsonstr+="{\"title\":\"No Brook VPN found ☹️\",\"subtitle\":\"You need to install Brook and set up your VPN first. Press return now!\",\"arg\":\"dick LOL\",}";
+      jsonstr+="{\"title\":\"No Brook VPN found ☹️\",\"subtitle\":\"You need to install Brook and set up your VPN first. Press return now!\",\"arg\":\"dickLOL\",}";
   else
     for vpn in "${vpns[@]}";do
       conn=$(get_vpn_status $vpn)

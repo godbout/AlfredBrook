@@ -102,7 +102,7 @@
 						<key>matchmode</key>
 						<integer>0</integer>
 						<key>matchstring</key>
-						<string>dick LOL</string>
+						<string>dickLOL</string>
 						<key>outputlabel</key>
 						<string></string>
 						<key>uid</key>
@@ -118,6 +118,27 @@
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>141AE334-7E08-4DBE-B44E-ACE3FFA06193</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Brook VPN</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1EE8D950-821D-49FA-9FD5-7B94DD45056F</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -143,27 +164,6 @@
 			<string>661B2258-0E04-428F-8393-E8EBF6A096C5</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Brook VPN</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>1EE8D950-821D-49FA-9FD5-7B94DD45056F</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
