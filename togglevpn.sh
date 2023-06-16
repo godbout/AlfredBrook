@@ -22,7 +22,7 @@ toggle_vpn() {
   # toggle state
   if [[ "$conn" == "Connected" ]]; then
     disconnect_vpn "$vpn"
-    echo "$vpn is disconnected"
+    echo "$vpn has disconnected"
   else
     connect_vpn "$vpn"
     echo "$vpn is connecting..."
