@@ -1,4 +1,8 @@
-# Alfred Brook
+<h1 align="center">Alfred Brook</h1>
+<p align="center">
+    <a href="https://github.com/godbout/AlfredBrook/releases"><img src="https://img.shields.io/github/release/godbout/AlfredBrook.svg" alt="GitHub Release"></a>
+    <a href="https://github.com/godbout/AlfredBrook/releases"><img src="https://img.shields.io/github/downloads/godbout/AlfredBrook/total.svg" alt="GitHub Downloads"></a>
+</p>
 
 ## WHY ONLY BROOK WHILE YOU COULD GET ALL THE VPNS AVAILABLE?
 
@@ -11,3 +15,5 @@ i was personally using 3 VPNs:
 
 1. [txthinking](https://github.com/txthinking)
 2. [me](https://github.com/godbout)
+
+
