@@ -22,9 +22,9 @@ vpn_list() {
       conn=$(get_vpn_status $vpn)
       jsonstr+="{\"arg\":\"$vpn\",";
       if [[ "$conn" == "Connected" ]]; then
-        jsonstr+="\"title\":\"Disconnect\",\"subtitle\":\"$vpn\",\"icon\":{\"path\":\"./resources/icons/disconnect.png\"}"
+        jsonstr+="\"title\":\"disconnect\",\"subtitle\":\"$vpn\",\"icon\":{\"path\":\"./resources/icons/disconnect.png\"}"
       else
-        jsonstr+="\"title\":\"Connect\",\"subtitle\":\"$vpn\",\"icon\":{\"path\":\"./resources/icons/connect.png\"}"
+        jsonstr+="\"title\":\"connect\",\"subtitle\":\"$vpn\",\"icon\":{\"path\":\"./resources/icons/connect.png\"}"
       fi
       jsonstr+="},"
     done
