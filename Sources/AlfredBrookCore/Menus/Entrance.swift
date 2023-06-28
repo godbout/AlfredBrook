@@ -2,6 +2,14 @@ import AlfredWorkflowScriptFilter
 import Foundation
 
 
+enum VPNStatus {
+    
+    case connected
+    case notConnected
+    
+}
+
+
 class Entrance {
     
     static let shared = Entrance()
@@ -9,15 +17,11 @@ class Entrance {
     private init() {}
 
     
-    static func userQuery() -> String {
-        CommandLine.arguments[1]
-    }
-
     static func scriptFilter() -> String {
-        results(for: userQuery())
+        results()
     }
 
-    static func results(for query: String) -> String {
+    static func results() -> String {
         // TODO: probably should be at the end of the Alfred Results
         if let release = Updater.updateAvailable() {
             ScriptFilter.add(
@@ -34,16 +38,37 @@ class Entrance {
             )
         }
         
-        do {
-            let vpns = brookVPNs(for: query)
-
-            return menuFor(vpns: vpns)
-        } catch {
-            return ScriptFilter.add(Item(title: "you've reached the end of why the Workflow doesn't work. i don't seem to know 👀️")).output()
+        let brookVPN = brookVPN()
+        
+        if brookVPN.isEmpty {
+            ScriptFilter.add(
+                Item(title: "no Brook VPN found ☹️")
+                    .subtitle("You need to install Brook and set up your VPN first. Press return now!")
+                    .arg("dickLOL")
+            )
+        } else {
+            switch vpnStatus(of: brookVPN) {
+            case .connected:
+                ScriptFilter.add(
+                    Item(title: "disconnect")
+                        .subtitle(brookVPN)
+                        .arg(brookVPN)
+                        .icon(Icon(path: "./resources/icons/disconnect.png"))
+                )
+            case .notConnected:
+                ScriptFilter.add(
+                    Item(title: "connect")
+                        .subtitle(brookVPN)
+                        .arg(brookVPN)
+                        .icon(Icon(path: "./resources/icons/connect.png"))
+                )
+            }
         }
+        
+        return ScriptFilter.output()
     }
-    
-    static func brookVPNs(for query: String) -> String {
+        
+    static func brookVPN() -> String {
         let pipe = Pipe()
 
         let scutil = Process()
@@ -55,20 +80,36 @@ class Entrance {
         scutil.launch()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)!
-        
-        print("hehe")
-        print(output)
+        guard let output = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .newlines) else { return "" }
         
         return output
     }
 
+    static func vpnStatus(of vpn: String) -> VPNStatus {
+        let pipe = Pipe()
+        
+        let scutil = Process()
+        scutil.standardOutput = pipe
+        scutil.standardError = pipe
+        scutil.arguments = ["-c", #"scutil --nc status "\#(vpn)" | head -n 1 | grep -i "connected""#]
+        scutil.launchPath = "/bin/zsh"
+        scutil.standardInput = nil
+        scutil.launch()
+        
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        guard let output = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .newlines) else { return .notConnected }
+               
+        return output == "Connected" ? .connected : .notConnected
+    }
+    
 }
 
 
 extension Entrance {
     
-    private static func menuFor(vpns: String) -> String {
+    private static func menuFor(brookVPN: String) -> String {
+        ScriptFilter.item(Item(title: brookVPN))
+        
         return ScriptFilter.output()
     }
 
