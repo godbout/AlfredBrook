@@ -1,7 +1,7 @@
 @testable import AlfredBrookCore
 import XCTest
 
-class NotificationsTests: AlfredKatTestCase {
+class NotificationsTests: AlfredBrookTestCase {
     
     func test_that_it_can_notify_when_the_VPN_is_connecting() {
         Self.setEnvironmentVariable(name: "action", value: "dickLOL")

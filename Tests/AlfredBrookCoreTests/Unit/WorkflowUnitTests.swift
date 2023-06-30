@@ -1,7 +1,7 @@
 @testable import AlfredBrookCore
 import XCTest
 
-class WorkflowUnitTests: AlfredKatTestCase {
+class WorkflowUnitTests: AlfredBrookTestCase {
     func test_that_calling_a_workflow_action_that_does_not_exist_returns_false() {
         Self.setEnvironmentVariable(name: "action", value: "LOOOOOLLLLLL")
 

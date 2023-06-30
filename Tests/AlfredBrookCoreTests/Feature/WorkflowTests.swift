@@ -1,7 +1,7 @@
 @testable import AlfredBrookCore
 import XCTest
 
-class WorkflowTests: AlfredKatTestCase {
+class WorkflowTests: AlfredBrookTestCase {
     func test_that_it_can_search_for_torrents_on_the_KAT_site() {
         Self.spoofUserQuery(with: "fight club")
 

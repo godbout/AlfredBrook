@@ -2,7 +2,7 @@ import XCTest
 @testable import AlfredBrookCore
 
 
-class AlfredKatTestCase: XCTestCase {
+class AlfredBrookTestCase: XCTestCase {
     
     override class func setUp() {
         super.setUp()
@@ -22,7 +22,7 @@ class AlfredKatTestCase: XCTestCase {
 }
 
 
-extension AlfredKatTestCase {
+extension AlfredBrookTestCase {
 
     static var updateAvailableFile: String? {
         guard let alfredWorkflowCache = ProcessInfo.processInfo.environment["alfred_workflow_cache"] else { return nil }
@@ -66,7 +66,7 @@ extension AlfredKatTestCase {
 }
 
 
-extension AlfredKatTestCase {
+extension AlfredBrookTestCase {
     
     private static func mockAlfredWorkflowUID() {
         Self.setEnvironmentVariable(name: "alfred_workflow_uid", value: "AlfredKat")
