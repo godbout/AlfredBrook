@@ -1,5 +1,5 @@
 import AlfredWorkflowScriptFilter
-import Foundation
+import AppKit
 
 
 public enum Workflow {
@@ -39,9 +39,12 @@ public enum Workflow {
         case "disconnect":
             disconnect(vpn: vpn)
                         
-            return false
+            return true
         case "download":
-            print("action download")
+            if let url = URL(string: "https://apps.apple.com/us/app/brook-network-tool/id1216002642") {
+                NSWorkspace.shared.open(url)
+            }
+            
             return false
         default:
             print("what action?")
@@ -70,6 +73,12 @@ public enum Workflow {
     }
 
 }
+
+
+// TODO:
+// * tests
+// * refactor so that it's testable and not a big pile of shit
+// * add fucking Updater
 
 
 extension Workflow {
