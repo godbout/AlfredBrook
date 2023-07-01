@@ -14,7 +14,6 @@ class AlfredBrookTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        Self.resetUserQuery()
         Self.resetEnvironmentVariables()
         try? Self.removeAlreadyCreatedUpdateInfoFile()
     }
@@ -40,12 +39,6 @@ extension AlfredBrookTestCase {
     
     static func resetEnvironmentVariables() {
         Self.setEnvironmentVariable(name: "action", value: "")
-        Self.setEnvironmentVariable(name: "torrent_page_link", value: "")
-        Self.setEnvironmentVariable(name: "cli", value: "")
-    }
-    
-    static func resetUserQuery() {
-        CommandLine.arguments[1] = ""
     }
     
     static func mockAlreadyCreatedReleaseInfoFile() throws {
