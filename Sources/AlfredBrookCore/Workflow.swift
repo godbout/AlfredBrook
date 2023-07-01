@@ -29,27 +29,37 @@ public enum Workflow {
 
     public static func `do`() -> Bool {
         let action = ProcessInfo.processInfo.environment["action"]
-        let torrentPageLink = ProcessInfo.processInfo.environment["torrent_page_link"] ?? ""
+        let vpn = ProcessInfo.processInfo.environment["vpn"] ?? ""
 
         switch action {
-        case "download":
+        case "connect":
+            connect(vpn: vpn)
+            
+            return true
+        case "disconnect":
+            disconnect(vpn: vpn)
+                        
             return false
-        case "copy":
+        case "download":
+            print("action download")
             return false
         default:
+            print("what action?")
             return false
         }
     }
 
     public static func notify(resultFrom _: Bool = false) -> String {
         let action = ProcessInfo.processInfo.environment["action"]
-        let torrentName = ProcessInfo.processInfo.environment["torrent_name"] ?? "some porn"
+        let vpn = ProcessInfo.processInfo.environment["vpn"] ?? ""
 
         switch action {
+        case "connect":
+            return "\(vpn) is connecting..."
+        case "disconnect":
+            return "\(vpn) has disconnected"
         case "download":
-            return "download"
-        case "copy":
-            return "copy"
+            return ""
         case "update":
             return ""
         case "go_release_page":
@@ -57,6 +67,35 @@ public enum Workflow {
         default:
             return "huh. wtf?"
         }
+    }
+
+}
+
+
+extension Workflow {
+    
+    private static func connect(vpn: String) {
+        let pipe = Pipe()
+
+        let scutil = Process()
+        scutil.standardOutput = pipe
+        scutil.standardError = pipe
+        scutil.arguments = ["-c", #"scutil --nc start "\#(vpn)""#]
+        scutil.launchPath = "/bin/zsh"
+        scutil.standardInput = nil
+        scutil.launch()
+    }
+    
+    private static func disconnect(vpn: String) {
+        let pipe = Pipe()
+
+        let scutil = Process()
+        scutil.standardOutput = pipe
+        scutil.standardError = pipe
+        scutil.arguments = ["-c", #"scutil --nc stop "\#(vpn)""#]
+        scutil.launchPath = "/bin/zsh"
+        scutil.standardInput = nil
+        scutil.launch()
     }
 
 }

@@ -39,12 +39,13 @@ class Entrance {
         }
         
         let brookVPN = brookVPN()
-        
+
         if brookVPN.isEmpty {
             ScriptFilter.add(
                 Item(title: "no Brook VPN found ☹️")
                     .subtitle("You need to install Brook and set up your VPN first. Press return now!")
-                    .arg("dickLOL")
+                    .arg("do")
+                    .variable(Variable(name: "action", value: "download"))
             )
         } else {
             switch vpnStatus(of: brookVPN) {
@@ -52,14 +53,18 @@ class Entrance {
                 ScriptFilter.add(
                     Item(title: "disconnect")
                         .subtitle(brookVPN)
-                        .arg(brookVPN)
+                        .arg("do")
+                        .variable(Variable(name: "action", value: "disconnect"))
+                        .variable(Variable(name: "vpn", value: brookVPN))
                         .icon(Icon(path: "./resources/icons/disconnect.png"))
                 )
             case .notConnected:
                 ScriptFilter.add(
                     Item(title: "connect")
                         .subtitle(brookVPN)
-                        .arg(brookVPN)
+                        .arg("do")
+                        .variable(Variable(name: "action", value: "connect"))
+                        .variable(Variable(name: "vpn", value: brookVPN))
                         .icon(Icon(path: "./resources/icons/connect.png"))
                 )
             }
