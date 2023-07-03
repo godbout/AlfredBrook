@@ -1,8 +1,15 @@
-//
-//  File.swift
-//  
-//
-//  Created by Guillaume Leclerc on 03/07/2023.
-//
-
 import Foundation
+@testable import AlfredBrookCore
+
+
+public struct BrookVPNNotInstalled: BrookVPNProtocol {
+    
+    public func name() -> String {
+        ""
+    }
+    
+    public func status(for name: String) -> VPNStatus {
+        .notConnected
+    }
+
+}
