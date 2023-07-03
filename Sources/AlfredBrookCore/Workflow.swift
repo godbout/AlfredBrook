@@ -23,8 +23,8 @@ public enum Workflow {
         ProcessInfo.processInfo.environment["next"] ?? "oops"
     }
 
-    public static func menu() -> String {
-        Entrance.scriptFilter()
+    public static func menu(for brookVPN: BrookVPNProtocol = BrookVPN()) -> String {
+        Entrance.scriptFilter(for: brookVPN)
     }
 
     public static func `do`() -> Bool {

@@ -2,26 +2,20 @@ import AlfredWorkflowScriptFilter
 import Foundation
 
 
-enum VPNStatus {
-    
-    case connected
-    case notConnected
-    
-}
-
-
 class Entrance {
     
     static let shared = Entrance()
 
     private init() {}
 
-    
-    static func scriptFilter() -> String {
-        results()
+
+    static func scriptFilter(for brookVPN: BrookVPNProtocol) -> String {
+        results(for: brookVPN)
     }
 
-    static func results() -> String {
+    static func results(for brookVPN: BrookVPNProtocol) -> String {
+        let brookVPNName = brookVPN.name()
+
         // TODO: probably should be at the end of the Alfred Results
         if let release = Updater.updateAvailable() {
             ScriptFilter.add(
@@ -38,9 +32,7 @@ class Entrance {
             )
         }
         
-        let brookVPN = brookVPN()
-
-        if brookVPN.isEmpty {
+        if brookVPNName.isEmpty {
             ScriptFilter.add(
                 Item(title: "no Brook VPN found ☹️")
                     .subtitle("You need to install Brook and set up your VPN first. Press return now!")
@@ -48,23 +40,23 @@ class Entrance {
                     .variable(Variable(name: "action", value: "download"))
             )
         } else {
-            switch vpnStatus(of: brookVPN) {
+            switch brookVPN.status(for: brookVPNName) {
             case .connected:
                 ScriptFilter.add(
                     Item(title: "disconnect")
-                        .subtitle(brookVPN)
+                        .subtitle(brookVPNName)
                         .arg("do")
                         .variable(Variable(name: "action", value: "disconnect"))
-                        .variable(Variable(name: "vpn", value: brookVPN))
+                        .variable(Variable(name: "vpn", value: brookVPNName))
                         .icon(Icon(path: "./resources/icons/disconnect.png"))
                 )
             case .notConnected:
                 ScriptFilter.add(
                     Item(title: "connect")
-                        .subtitle(brookVPN)
+                        .subtitle(brookVPNName)
                         .arg("do")
                         .variable(Variable(name: "action", value: "connect"))
-                        .variable(Variable(name: "vpn", value: brookVPN))
+                        .variable(Variable(name: "vpn", value: brookVPNName))
                         .icon(Icon(path: "./resources/icons/connect.png"))
                 )
             }
@@ -73,49 +65,5 @@ class Entrance {
         return ScriptFilter.output()
     }
         
-    static func brookVPN() -> String {
-        let pipe = Pipe()
-
-        let scutil = Process()
-        scutil.standardOutput = pipe
-        scutil.standardError = pipe
-        scutil.arguments = ["-c", #"scutil --nc list | grep "com.txthinking.brook" | awk -F'"' '{print$2}'"#]
-        scutil.launchPath = "/bin/zsh"
-        scutil.standardInput = nil
-        scutil.launch()
-        
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        guard let output = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .newlines) else { return "" }
-        
-        return output
-    }
-
-    static func vpnStatus(of vpn: String) -> VPNStatus {
-        let pipe = Pipe()
-        
-        let scutil = Process()
-        scutil.standardOutput = pipe
-        scutil.standardError = pipe
-        scutil.arguments = ["-c", #"scutil --nc status "\#(vpn)" | head -n 1 | grep -i "connected""#]
-        scutil.launchPath = "/bin/zsh"
-        scutil.standardInput = nil
-        scutil.launch()
-        
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        guard let output = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .newlines) else { return .notConnected }
-               
-        return output == "Connected" ? .connected : .notConnected
-    }
-    
-}
-
-
-extension Entrance {
-    
-    private static func menuFor(brookVPN: String) -> String {
-        ScriptFilter.item(Item(title: brookVPN))
-        
-        return ScriptFilter.output()
-    }
 
 }
