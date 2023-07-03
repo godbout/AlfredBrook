@@ -2,7 +2,7 @@ import Foundation
 @testable import AlfredBrookCore
 
 
-public struct BrookVPNConnected: BrookVPNProtocol {
+public struct BrookVPNConnectedMock: BrookVPNProtocol {
     
     public func name() -> String {
         "com.txthinking.brook"
