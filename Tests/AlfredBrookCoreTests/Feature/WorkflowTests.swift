@@ -2,89 +2,23 @@
 import XCTest
 
 class WorkflowTests: AlfredBrookTestCase {
-    func test_that_it_can_search_for_torrents_on_the_KAT_site() {
-        Self.spoofUserQuery(with: "fight club")
-
+    
+    func test_that_if_there_is_no_Brook_VPN_installed_then_it_tells_you_that_LOL() {
         XCTAssertTrue(
-            Workflow.menu().contains("Fight Club (1999)")
-        )
-    }
-
-    func test_that_it_can_filter_torrents_by_music_type() {
-        Self.spoofUserQuery(with: "blonde redhead #music")
-
-        XCTAssertTrue(
-            Workflow.menu().contains("Blonde Redhead 2007 23")
-        )
-
-        XCTAssertFalse(
-            Workflow.menu().contains("Porno")
+            Workflow.menu(for: BrookVPNNotInstalled()).contains("no Brook VPN found")
         )
     }
     
-    func test_that_it_can_sort_torrents_by_seeders() {
-        Self.spoofUserQuery(with: "fight club ^seeders")
-
+    func test_that_if_there_is_a_Brook_VPN_installed_and_not_connected_it_allows_connection() {
         XCTAssertTrue(
-            Workflow.menu().contains("Fight Club (1999) 1080p BrRip x264 - YIFY")
+            Workflow.menu(for: BrookVPNNotConnected()).contains(#""title":"connect""#)
         )
-
-        XCTAssertFalse(
-            Workflow.menu().contains("dAV1ncia")
+    }
+        
+    func test_that_if_there_is_a_Brook_VPN_installed_and_connected_it_allows_disconnection() {
+        XCTAssertTrue(
+            Workflow.menu(for: BrookVPNConnected()).contains(#""title":"disconnect""#)
         )
     }
 
-    func test_that_it_tells_the_user_that_there_is_no_item_found_if_well_there_is_no_item_found() {
-        Self.spoofUserQuery(with: "lksjdflkasjfdwoivlijssdkfjhsgoiweuh skjhskjhsafdhkjv")
-
-        XCTAssertTrue(
-            Workflow.menu().contains("404")
-        )
-    }
-
-    func test_that_it_can_get_the_torrent_page_link() {
-        Self.spoofUserQuery(with: "fight club YIFY")
-
-        XCTAssertTrue(
-            Workflow.menu().contains("/fight-club-1999-1080p-brrip-x264-yify-t446902.html")
-        )
-    }
-
-    func test_that_it_can_download_a_chosen_torrent_through_the_default_application() {
-        Self.setEnvironmentVariable(name: "action", value: "download")
-        Self.setEnvironmentVariable(
-            name: "torrent_page_link",
-            value: "/fight-club-1999-1080p-brrip-x264-yify-t446902.html"
-        )
-
-        XCTAssertTrue(
-            Workflow.do()
-        )
-    }
-
-    func test_that_it_can_download_a_chosen_torrent_through_a_cli_command() {
-        Self.setEnvironmentVariable(name: "action", value: "download")
-        Self.setEnvironmentVariable(
-            name: "torrent_page_link",
-            value: "/fight-club-1999-1080p-brrip-x264-yify-t446902.html"
-        )
-
-        Self.setEnvironmentVariable(name: "cli", value: "/usr/bin/open -R {magnet}")
-
-        XCTAssertTrue(
-            Workflow.do()
-        )
-    }
-
-    func test_that_it_can_copy_the_magnet_link_of_a_chosen_torrent() {
-        Self.setEnvironmentVariable(name: "action", value: "copy")
-        Self.setEnvironmentVariable(
-            name: "torrent_page_link",
-            value: "/fight-club-1999-1080p-brrip-x264-yify-t446902.html"
-        )
-
-        XCTAssertTrue(
-            Workflow.do()
-        )
-    }
 }
