@@ -1,5 +1,3 @@
-#!/bin/bash
-
 get_vpn_names() {
   scutil --nc list | grep "com.txthinking.brook" | awk -F'"' '{print$2}'
 }

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 get_vpn_status() {
   local vpn=$1
   scutil --nc status "$vpn" | head -n 1 | grep -i "connected"
