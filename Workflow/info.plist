@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>mo.com.sleeplessmind.brook</string>
+	<string>mo.com.sleeplessmind.AlfredBrook</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>141AE334-7E08-4DBE-B44E-ACE3FFA06193</key>
@@ -61,11 +63,11 @@
 	<key>createdby</key>
 	<string>Guillaume Leclerc</string>
 	<key>description</key>
-	<string>Toggle Brook VPN connection</string>
+	<string>connect to your Brook VPN easily</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Brook Control</string>
+	<string>Brook VPN</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -88,6 +90,55 @@
 			<string>475F40BA-CAAF-4AB6-960E-EFF8379E13FB</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>bk</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>zsh resources/scripts/list.sh</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>connect to your Brook server...</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A223DE44-0855-4BF8-8A0E-021475E7FFF9</string>
+			<key>version</key>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -133,7 +184,7 @@
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>Brook VPN</string>
+				<string>Brook</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
@@ -150,13 +201,13 @@
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>bash togglevpn.sh {query}</string>
+				<string>zsh resources/scripts/toggle.sh {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -165,58 +216,29 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>bk</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>bash vpnlist.sh</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>connect to your Brook server...</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>A223DE44-0855-4BF8-8A0E-021475E7FFF9</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Wireguard Control enables the user to toggle predefined Wire Guard VPN tunnels, using the keyword wguard.</string>
+	<string># WHAT IS THIS
+
+it helps you quickly connect to your Brook VPN server.
+
+# WHAT DO I NEED
+
+well obviously you need a Brook VPN Configuration installed on your machine. this is done by the Brook macOS app. if you don't have a Brook VPN Configuration the Workflow can send you into space to download Brook.
+
+# HOW DOES IT WORK
+
+type `bk` in Alfred and enjoy your life.
+
+![install](resources/images/no.png)
+
+![connect](resources/images/connect.png)
+
+![disconnect](resources/images/disconnect.png)
+
+# I NEED MORE INFORMATION!
+
+then head to the [GitHub repo](https://github.com/godbout/AlfredBrook)!</string>
 	<key>uidata</key>
 	<dict>
 		<key>141AE334-7E08-4DBE-B44E-ACE3FFA06193</key>
@@ -229,9 +251,9 @@
 		<key>1EE8D950-821D-49FA-9FD5-7B94DD45056F</key>
 		<dict>
 			<key>xpos</key>
-			<real>620</real>
+			<real>655</real>
 			<key>ypos</key>
-			<real>180</real>
+			<real>170</real>
 		</dict>
 		<key>475F40BA-CAAF-4AB6-960E-EFF8379E13FB</key>
 		<dict>
@@ -243,25 +265,23 @@
 		<key>661B2258-0E04-428F-8393-E8EBF6A096C5</key>
 		<dict>
 			<key>xpos</key>
-			<real>410</real>
+			<real>460</real>
 			<key>ypos</key>
-			<real>180</real>
+			<real>170</real>
 		</dict>
 		<key>A223DE44-0855-4BF8-8A0E-021475E7FFF9</key>
 		<dict>
 			<key>xpos</key>
-			<real>110</real>
+			<real>90</real>
 			<key>ypos</key>
-			<real>180</real>
+			<real>120</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>1.0</string>
+	<string>2.0.0</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/godbout/AlfredBrook</string>
 </dict>
 </plist>
