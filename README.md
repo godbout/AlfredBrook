@@ -1,10 +1,10 @@
-<h1 align="center">Alfred Brook</h1>
+<h1 align="center">Alfred Brook—Brook VPN</h1>
 <p align="center">
     <a href="https://github.com/godbout/AlfredBrook/releases"><img src="https://img.shields.io/github/release/godbout/AlfredBrook.svg" alt="GitHub Release"></a>
     <a href="https://github.com/godbout/AlfredBrook/releases"><img src="https://img.shields.io/github/downloads/godbout/AlfredBrook/total.svg" alt="GitHub Downloads"></a>
 </p>
 
-![awesome stuff happening in there](https://raw.githubusercontent.com/godbout/AlfredBrook/master/assets/gif.gif "hehe")
+![awesome stuff happening in there](https://raw.githubusercontent.com/godbout/AlfredBrook/media/gif.gif "hehe")
 
 ---
 
