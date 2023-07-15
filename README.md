@@ -4,6 +4,8 @@
     <a href="https://github.com/godbout/AlfredBrook/releases"><img src="https://img.shields.io/github/downloads/godbout/AlfredBrook/total.svg" alt="GitHub Downloads"></a>
 </p>
 
+<video muted autoplay><source src="./assets/flow.mp4" type="video/mp4"></video>
+
 ## THIEF
 
 this Workflow is based on the awesome [work](https://github.com/Chrede88/alfred-wireguard) from [Christian Olsen](https://github.com/Chrede88).
