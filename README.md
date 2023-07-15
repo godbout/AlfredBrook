@@ -8,7 +8,7 @@
 
 ---
 
-## THIEF
+## THIEF!
 
 this Workflow is based on the awesome [work](https://github.com/Chrede88/alfred-wireguard) from [Christian Olsen](https://github.com/Chrede88).
 
