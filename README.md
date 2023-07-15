@@ -4,7 +4,7 @@
     <a href="https://github.com/godbout/AlfredBrook/releases"><img src="https://img.shields.io/github/downloads/godbout/AlfredBrook/total.svg" alt="GitHub Downloads"></a>
 </p>
 
-<video muted autoplay><source src="./assets/flow.mp4" type="video/mp4"></video>
+<video muted autoplay><source src="https://github.com/godbout/AlfredBrook/blob/master/assets/flow.mp4" type="video/mp4"></video>;
 
 ## THIEF
 
