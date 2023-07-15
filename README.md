@@ -4,6 +4,10 @@
     <a href="https://github.com/godbout/AlfredBrook/releases"><img src="https://img.shields.io/github/downloads/godbout/AlfredBrook/total.svg" alt="GitHub Downloads"></a>
 </p>
 
+## THIEF
+
+this Workflow is based on the awesome [work](https://github.com/Chrede88/alfred-wireguard) from [Christian Olsen](https://github.com/Chrede88).
+
 ## WHY ONLY BROOK WHILE YOU COULD GET ALL THE VPNS AVAILABLE?
 
 i was personally using 3 VPNs:
@@ -14,6 +18,5 @@ i was personally using 3 VPNs:
 ## THANKS TO
 
 1. [txthinking](https://github.com/txthinking)
-2. [me](https://github.com/godbout)
-
-
+2. [Christian Olsen](https://github.com/Chrede88) (nothing indicates that he is actually Christian)
+3. [me](https://github.com/godbout)
